@@ -3,7 +3,7 @@ import deque
 const N_PUT_LEFT = 2
 const N_PUT_RIGHT = 2
 
-const N_GET_LEFT = 2
+const N_GET_LEFT = 1
 const N_GET_RIGHT = 1
 
 d = deque.Deque()
