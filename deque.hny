@@ -1,0 +1,16 @@
+import deque_impl
+
+def Deque() returns empty: 
+    empty = deque_impl.Deque()
+
+def put_left(d, v):
+    deque_impl.put_left(d, v)
+
+def put_right(d, v):
+    deque_impl.put_right(d, v)
+
+def get_left(d) returns next: 
+    next = deque_impl.get_left(d)
+
+def get_right(d) returns prev: 
+    prev = deque_impl.get_right(d)
