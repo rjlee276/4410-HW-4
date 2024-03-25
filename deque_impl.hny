@@ -36,9 +36,10 @@ def get_left(d) returns next:
             d -> head = node -> next
             if d -> head == None: 
                 d -> tail = None
-                
+            else:
+                d -> head -> prev = None
             free(node)
-    release(?d -> lock)
+        release(?d -> lock)
 
 def get_right(d) returns prev: 
     acquire(?d -> lock)
@@ -50,6 +51,7 @@ def get_right(d) returns prev:
             d -> tail = node -> prev
             if d -> tail == None: 
                 d -> head = None
-
+            else:
+                d -> tail -> next = None
             free(node)
-    release(?d -> lock)
+        release(?d -> lock)

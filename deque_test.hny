@@ -1,10 +1,10 @@
 import deque
 
-const N_PUT_LEFT = 2
-const N_PUT_RIGHT = 2
+const N_PUT_LEFT = 1
+const N_PUT_RIGHT = 1
 
-const N_GET_LEFT = 1
-const N_GET_RIGHT = 1
+const N_GET_LEFT = 2
+const N_GET_RIGHT = 2
 
 d = deque.Deque()
 
@@ -34,6 +34,8 @@ for i in {1..N_PUT_LEFT}:
 for i in {1..N_PUT_RIGHT}:
     spawn put_right_test(i)
 
+for i in {1..N_GET_LEFT}:
+    spawn get_left_test(i)
+
 for i in {1..N_GET_RIGHT}:
     spawn get_right_test(i)
-

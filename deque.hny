@@ -1,16 +1,52 @@
-import deque_impl
+from alloc import malloc, free
 
 def Deque() returns empty: 
-    empty = deque_impl.Deque()
+    empty = { .head: None, .tail: None}
 
 def put_left(d, v):
-    deque_impl.put_left(d, v)
+    atomically: 
+        let node = malloc({.value: v, .next: None, .prev: None}):
+            if d -> head == None: 
+                d -> tail = d -> head = node
+            else: 
+                node -> next = d -> head
+                d -> head -> prev = node
+                d -> head = node
 
 def put_right(d, v):
-    deque_impl.put_right(d, v)
+    atomically: 
+        let node = malloc({.value: v, .next: None, .prev: None}):
+            if d -> tail == None: 
+                d -> tail = d -> head = node
+            else: 
+                node -> prev = d -> tail
+                d -> tail -> next = node
+                d -> tail = node
 
 def get_left(d) returns next: 
-    next = deque_impl.get_left(d)
+    atomically: 
+        let node = d -> head: 
+            if node == None: 
+                next = None
+            else:
+                next = node -> value
+                d -> head = node -> next
+                if d -> head == None: 
+                    d -> tail = None
+                else:
+                    d -> head -> prev = None
+                free(node)
 
 def get_right(d) returns prev: 
-    prev = deque_impl.get_right(d)
+    atomically:
+        let node = d -> tail: 
+            if node == None: 
+                prev = None
+            else:
+                prev = node -> value
+                d -> tail = node -> prev
+                if d -> tail == None: 
+                    d -> head = None
+                else:
+                    d -> tail -> next = None
+                free(node)
